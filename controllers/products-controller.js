@@ -6,17 +6,17 @@ const productService = require("../logic/products-service.js");
 const router = express.Router();
 
 
-router.get("/", (request, response)=>{
+router.get("/", async (request, response)=>{
     //response.status(200).header("Content-Type", "application/json").send(JSON.stringify(products));
-    const products = productService.getAllProducts();
+    const products = await productService.getAllProducts();
     response.json(products);
 });
 
 
 
-router.get("/:id", (request, response)=>{
+router.get("/:id", async (request, response)=>{
     const id = +request.params.id;
-    const product = productService.getSpecificProduct(id);
+    const product = await productService.getSpecificProduct(id);
     response.json(product);
 
 });

@@ -1,0 +1,8 @@
+
+[
+    {"id": 1, "name": "Skipping Rope","price": 20.3,"stock": 70},
+    {"id": 2, "name": "Dummbell","price": 10.2,"stock": 80},
+    {"id": 3, "name": "Roller","price": 50.3,"stock": 67},
+    {"id": 4, "name": "Running pad","price": 26.3,"stock": 15}
+]
+

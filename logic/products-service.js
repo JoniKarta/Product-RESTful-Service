@@ -3,15 +3,15 @@
 const dao = require("../data-access-layer/dal.js");
 
 
-function getSpecificProduct(id){
-    const products = dao.getAllProducts();
+async function getSpecificProduct(id){
+    const products = await dao.findAll();
     const product = products.find(prod => prod.id === id);
     return product;
 }
 
 
-function getAllProducts(){
-    const products = dao.getAllProducts();
+async function getAllProducts(){
+    const products = await dao.findAll();
     return products;
 }
 
