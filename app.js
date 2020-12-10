@@ -6,6 +6,10 @@ const productController = require("./controllers/products-controller.js");
 
 const server = express();
 
+
+// Middleware - Like bodyParser
+server.use(express.json());
+
 // Middleware
 server.use("/api/products", productController);
 

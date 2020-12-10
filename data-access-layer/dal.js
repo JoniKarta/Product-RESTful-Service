@@ -22,17 +22,18 @@ function findAll(){
     });
 }
 
-function save(product){
+function save(products){ 
 
     return new Promise((resolve, reject) => {
-        const jsonProduct = JSON.stringify(product);
-        fs.appendFile(jsonProducts, jsonProduct, err => {
+        
+        const fileContent = JSON.stringify(products);
+        fs.writeFile(jsonFilePath, fileContent, err => {
             if(err){
                 reject(err);
                 return
             }
             // TODO: handle mockup callback return 
-            resolve(product);
+            resolve();
         });
     });
 }
