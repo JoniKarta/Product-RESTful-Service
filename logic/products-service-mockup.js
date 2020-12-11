@@ -1,7 +1,7 @@
 
 
-const dao = require("../data-access-layer/dal.js");
-
+const dao = require("../data-access-layer/dal-mockup.js");
+const dal = require("../data-access-layer/dal");
 
 async function getSpecificProduct(id){
     const products = await dao.findAll();

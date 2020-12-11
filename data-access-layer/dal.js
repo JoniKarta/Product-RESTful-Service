@@ -1,49 +1,42 @@
 
-const fs = require("fs");
-//const db = require("../database/database-mockup.js");
-const jsonFilePath = "./database/products.json";
+const mysql = require("mysql");
 
-// function getAllProducts(){
-//     const products = db.products;
-//     return products;
-// }
+// const connection = mysql.createConnection({
+//     host: global.config.host,
+//     user: global.config.user, 
+//     password: global.config.password, 
+//     database: global.config.database
+// });
 
-function findAll(){
+const connection = mysql.createConnection({
+    host : 'localhost',
+    user : 'root',
+    password : '',
+    database : 'northwind'
+})
+
+connection.connect((err) => {
+    if(err){
+        console.log(err.message);
+        return;
+    }
+    console.log("Connection successful");
+});
+
+
+function execute(query){
+
     return new Promise((resolve, reject) => {
-        
-        fs.readFile(jsonFilePath,"utf-8", (err, jsonProducts) =>{
-            if(err){
-                reject(err);
-                return
-            }
-            const products = JSON.parse(jsonProducts);
-            resolve(products);
+        connection.query(query, (err, data) => {
+                if(err){
+                    reject(err.message);
+                }else {
+                    resolve(data);
+                }
         });
     });
-}
-
-function save(products){ 
-
-    return new Promise((resolve, reject) => {
-        
-        const fileContent = JSON.stringify(products);
-        fs.writeFile(jsonFilePath, fileContent, err => {
-            if(err){
-                reject(err);
-                return
-            }
-            // TODO: handle mockup callback return 
-            resolve();
-        });
-    });
-}
-
-function findById(id) {
-
 }
 
 module.exports = {
-    findAll, 
-    save
+    execute
 }
-
